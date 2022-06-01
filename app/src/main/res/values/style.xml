@@ -1,0 +1,88 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="fontFamily">@font/calibary_regular</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+    </style>
+
+    <style name="big_bold_blue_font">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="fontFamily">@font/calibary_regular</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="bold_blue_font">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="fontFamily">@font/calibary_regular</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+    <style name="gray_font">
+        <item name="android:textSize">16sp</item>
+
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:textColor">@color/dark_gray</item>
+    </style>
+    <style name="normal_gray_font">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/dark_gray</item>
+    </style>
+
+    <style name="forgot_password_font">
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:singleLine">true</item>
+
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:textColor">@color/secondary_color</item>
+    </style>
+
+    <style name="user_name_style">
+        <item name="android:textSize">16sp</item>
+        <item name="android:hint">Nombre de Usuario</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingEnd">10dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:inputType">text</item>
+        <item name="android:maxLength">50</item>
+        <item name="android:imeOptions">actionNext</item>
+        <item name="android:background">@drawable/et_bg</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="password_et_style">
+        <item name="android:textSize">16sp</item>
+        <item name="android:hint">Contraseña de inicio de sesión</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingEnd">10dp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:inputType">textPassword</item>
+        <item name="android:maxLength">20</item>
+        <item name="android:imeOptions">actionDone</item>
+        <item name="android:background">@drawable/et_bg</item>
+        <item name="android:layout_height">45dp</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="bt_style">
+        <item name="android:textSize">16sp</item>
+        <item name="android:paddingStart">50dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingEnd">50dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@color/secondary_color</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="Theme.AgenceKotlin.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.AgenceKotlin.PopupOverlay"
+        parent="ThemeOverlay.AppCompat.Light" />
+</resources>
