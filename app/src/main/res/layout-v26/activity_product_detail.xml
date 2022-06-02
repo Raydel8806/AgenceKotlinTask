@@ -6,25 +6,19 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="15">
+
+
  <LinearLayout
-     android:id="@+id/ll_map_viewer"
      android:layout_width="match_parent"
      android:layout_height="match_parent"
      android:layout_weight="10"
      android:orientation="vertical">
-  <FrameLayout
-      android:id="@+id/fl_layout_map"
+
+  <androidx.fragment.app.FragmentContainerView
+      android:id="@+id/fragmentContainerView"
+      android:name="com.campingstudio.agencekotlin.ui.view.MapsFragment"
       android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      tools:context=".MapFragment"
-      android:layout_margin="3dp"
-      tools:ignore="UselessParent">
-   <fragment
-       android:name="com.google.android.gms.maps.SupportMapFragment"
-       android:id="@+id/frg"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"/>
-  </FrameLayout>
+      android:layout_height="0dp" />
  </LinearLayout>
 
  <LinearLayout
@@ -46,12 +40,11 @@
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:layout_weight="1"
-       android:layout_marginStart="5dp"
        android:orientation="vertical">
 
     <TextView
         android:id="@+id/tv_product_name"
-        style="@style/middle_bold_blue_font"
+        style="@style/big_bold_blue_font"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -61,9 +54,12 @@
 
     <TextView
         android:id="@+id/tv_product_description"
+        style="@style/justify_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:gravity="center" 
         android:justificationMode="inter_word"
         android:text="@string/large_text" />
    </LinearLayout>
@@ -97,6 +93,7 @@
 
    <Button
        android:id="@+id/btn_add_product"
+       style="@style/FirebaseUI.Button"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:layout_gravity="center_vertical"

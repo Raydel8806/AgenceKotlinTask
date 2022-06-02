@@ -1,16 +1,19 @@
 package com.campingstudio.agencekotlin.ui.view
-import android.Manifest
-import android.content.pm.PackageManager
 import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import com.campingstudio.agencekotlin.data.model.Product
 import com.campingstudio.agencekotlin.databinding.ActivityProductDetailBinding
 import com.campingstudio.agencekotlin.ui.viewmodel.ProductDetailViewModel
 import com.google.gson.Gson
+import com.campingstudio.agencekotlin.R
 
-class ProductDetailActivity : AppCompatActivity() {
+
+class ProductDetailActivity : AppCompatActivity()  {
+
     private lateinit var binding: ActivityProductDetailBinding
+
     private lateinit var vmProductDetailViewModel: ProductDetailViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,35 +22,53 @@ class ProductDetailActivity : AppCompatActivity() {
         setContentView(binding.root)
         vmProductDetailViewModel = ProductDetailViewModel()
         val bundle = intent.extras
+        initProps()
         setupLiveData()
-        bundle?.getString("product")?.let {
-            if (it.isNotEmpty()) {
-                vmProductDetailViewModel.selectProduct(Gson().fromJson(it, Product::class.java))
-                /* Gson().fromJson(it, Product::class.java).apply {
-                    binding.tvProductName.text = this.nameOfProduct
-                    binding.tvProductDescription.text = this.descriptionOfProduct
-                }*/
-            }
-        }
-
+        addFragment()
+        bundle?.getString("product")?.let {if (it.isNotEmpty()) {vmProductDetailViewModel.selectProduct(Gson().fromJson(it, Product::class.java))}}
 
     }
 
-    private fun setupLiveData() {
+    private fun initProps() {
+        binding.apply {
+            btnAddProduct.setOnClickListener {showConfirmDialog()}
+        }
+    }
 
+    private fun showConfirmDialog() {
+        val alertDialog: AlertDialog.Builder = AlertDialog.Builder(this@ProductDetailActivity)
+        alertDialog.setTitle("Confirmar Compra")
+        alertDialog.setMessage("Está seguro que desea pagar por este Producto?")
+        alertDialog.setPositiveButton("Si") { _, _ ->showNotifyDialog()}
+        alertDialog.setNegativeButton("No") { _, _ -> }
+        val alert: AlertDialog = alertDialog.create()
+        alert.setCanceledOnTouchOutside(false)
+        alert.show()
+    }
+
+    private fun showNotifyDialog() {
+        val alertDialog: AlertDialog.Builder = AlertDialog.Builder(this@ProductDetailActivity)
+        alertDialog.setTitle("Resultado del pago:")
+        alertDialog.setMessage("Pedigo pagado correctamente!!!")
+        alertDialog.setPositiveButton("OK") { _, _ ->onBackPressed()}
+        val alert: AlertDialog = alertDialog.create()
+        alert.setCanceledOnTouchOutside(false)
+        alert.show()
+    }
+
+    private fun addFragment( ) {
+        val manager = supportFragmentManager
+        val ft = manager.beginTransaction()
+        ft.replace(R.id.fl_layout_map, com.campingstudio.agencekotlin.ui.view.MapFragment())
+        ft.commitAllowingStateLoss()
+    }
+
+    private fun setupLiveData() {
         vmProductDetailViewModel.tProductSelected.observe(this, {
             binding.tvProductName.text = it.nameOfProduct
             binding.tvProductDescription.text = it.descriptionOfProduct
         })
     }
 
-    private fun shopingConfirmProduct(){
-
-    }
-
-    private fun isPermissionsGranted() = ContextCompat.checkSelfPermission(
-        this,
-        Manifest.permission.ACCESS_FINE_LOCATION
-    ) == PackageManager.PERMISSION_GRANTED
 }
 

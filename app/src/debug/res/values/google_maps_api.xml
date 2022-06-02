@@ -1,0 +1,24 @@
+<resources>
+    <!--
+    TODO: Before you run your application, you need a Google Maps API key.
+
+    To get one, follow this link, follow the directions and press "Create" at the end:
+
+    https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=4C:4B:F6:62:2B:E1:3F:1C:1B:FB:F1:5C:DE:9C:40:73:44:51:12:A6%3Bcom.campingstudio.agencekotlin
+
+    You can also add your credentials to an existing key, using these values:
+
+    Package name:
+    com.campingstudio.agencekotlin
+
+    SHA-1 certificate fingerprint:
+    4C:4B:F6:62:2B:E1:3F:1C:1B:FB:F1:5C:DE:9C:40:73:44:51:12:A6
+
+    Alternatively, follow the directions here:
+    https://developers.google.com/maps/documentation/android/start#get-key
+
+    Once you have your key (it starts with "AIza"), replace the "google_maps_key"
+    string in this file.
+    -->
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyA7kU4recq-P4AibyDgJajv1rFTCV3OYIw</string>
+</resources>

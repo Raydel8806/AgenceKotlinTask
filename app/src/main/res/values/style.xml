@@ -14,11 +14,24 @@
         <item name="fontFamily">@font/calibary_regular</item>
         <item name="android:textColor">@color/black</item>
     </style>
+    <style name="middle_bold_blue_font">
+        <item name="android:textSize">25sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="fontFamily">@font/calibary_regular</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
     <style name="bold_blue_font">
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
         <item name="fontFamily">@font/calibary_regular</item>
         <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+    <style name="justify_text_view">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="fontFamily">@font/calibary_regular</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
     <style name="gray_font">
         <item name="android:textSize">16sp</item>
