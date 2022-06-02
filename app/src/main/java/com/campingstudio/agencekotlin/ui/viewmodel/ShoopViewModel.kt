@@ -14,15 +14,9 @@ class ShopViewModel:ViewModel() {
     }
 
     private val productRepository = GetProductsUseCase()
-
     val isLoading = MutableLiveData<Boolean>()
-
-    private var _tProductCarListLive = MutableLiveData( mutableListOf<Product>())
-    var tProductCarListLive: MutableLiveData<MutableList<Product>> = _tProductCarListLive
-
     private var _tProductListLive = MutableLiveData( mutableListOf<Product>())
     var tProductListLive: MutableLiveData<MutableList<Product>> = _tProductListLive
-
     private var _tProductSelected = MutableLiveData<Product>()
     var tProductSelected : MutableLiveData<Product> = _tProductSelected
 
@@ -36,15 +30,6 @@ class ShopViewModel:ViewModel() {
             }
             isLoading.postValue(false)
         }
-    }
-
-    fun loadTProductList(){
-        productRepository().let {
-            tProductListLive.value = (it as MutableList<Product>)
-            _tProductListLive.postValue(tProductListLive.value)
-        }
-
-        Log.d(TAG,_tProductListLive.value?.size.toString())
     }
 
     fun selectProduct(product: Product){
