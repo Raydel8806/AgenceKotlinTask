@@ -1,6 +1,5 @@
 package com.campingstudio.agencekotlin.ui.view
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.campingstudio.agencekotlin.data.model.Product

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.campingstudio.agencekotlin">
+    package="com.campingstudio.agencekotlin" xmlns:tools="http://schemas.android.com/tools">
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -32,7 +32,13 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" tools:replace="android:value" />
 
+        <meta-data
+            android:name="com.facebook.sdk.ClientToken"
+            android:value="@string/facebook_client_token" tools:replace="android:value"/>
         <activity
             android:name=".ui.view.ShoppActivity"
             android:exported="true"
@@ -54,6 +60,9 @@
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.agencekotlin.NoActionBar" />
+        <provider android:authorities="com.facebook.app.FacebookContentProvider274109678203497"
+            android:name="com.facebook.FacebookContentProvider"
+            android:exported="true"  />
     </application>
 
 </manifest>

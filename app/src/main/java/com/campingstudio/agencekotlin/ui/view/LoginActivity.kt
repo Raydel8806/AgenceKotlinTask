@@ -3,8 +3,6 @@ package com.campingstudio.agencekotlin.ui.view
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.widget.doAfterTextChanged
 import com.campingstudio.agencekotlin.R
 import com.campingstudio.agencekotlin.core.AuthUserHelper
@@ -12,6 +10,7 @@ import com.campingstudio.agencekotlin.data.model.AuthUser
 import com.campingstudio.agencekotlin.databinding.ActivityLoginBinding
 import com.campingstudio.agencekotlin.core.AuthManager
 import com.campingstudio.agencekotlin.ext.hideKeyboard
+import com.campingstudio.agencekotlin.ext.toastLong
 import com.campingstudio.agencekotlin.ui.state.LoginState
 import com.campingstudio.agencekotlin.ui.viewmodel.LoginViewModel
 import com.facebook.AccessToken
@@ -20,13 +19,10 @@ import com.facebook.FacebookCallback
 import com.facebook.FacebookException
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
-import com.google.android.gms.auth.api.identity.SignInClient
-import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
-import com.google.android.material.progressindicator.CircularProgressIndicator
 
 import java.util.*
 
@@ -35,16 +31,12 @@ class LoginActivity : AuthManager() {
     companion object {
         const val TAG = "LoginActivity"
     }
-    private lateinit var oneTapClient: SignInClient
-    private lateinit var signInRequest: BeginSignInRequest
-
     private lateinit var binding: ActivityLoginBinding
     private lateinit var vmLoginViewModel: LoginViewModel
     private lateinit var authUserHelper : AuthUserHelper
-    private var isValid: Boolean = false
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var faceBookCallbackManager: CallbackManager
-    private var RC_SIGN_IN = 2
+    private val code = 2
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -75,8 +67,7 @@ class LoginActivity : AuthManager() {
         })
         vmLoginViewModel.authFailedResponse.observe(this, {
             if (it != null) {
-                Toast.makeText(this, it, Toast.LENGTH_LONG).show()
-                screenToast(it)
+                toastLong(this,it)
             }
         })
         vmLoginViewModel.loginResponse.observe(this, {
@@ -102,14 +93,14 @@ class LoginActivity : AuthManager() {
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
-                screenToast("Welcome "+it.displayName.toString())
+                toastLong(this,"Welcome "+it.displayName.toString())
                 goHome()
             }
         })
 
         vmLoginViewModel.errorInsertResponse.observe(this, {
             if (it != null) {
-                screenToast(it.message + "")
+                toastLong(this,it.message + "")
                 if (!it.error) {
                     val intent = Intent(this, ShoppActivity::class.java)
                     startActivity(intent)
@@ -135,7 +126,7 @@ class LoginActivity : AuthManager() {
             llRoot.setOnClickListener{hideKeyboard()}
             etUserName.doAfterTextChanged {startValidating()}
             etPassword.doAfterTextChanged {startValidating()}
-            tvForgotPassword.setOnClickListener {screenToast("Loading...")}
+            tvForgotPassword.setOnClickListener {showHelper("Loading...")}
             ivFacebook.setOnClickListener {initFacebookLogin()}
             ivGoogle.setOnClickListener {initGoogleLogin()}
             btLogin.setOnClickListener {goHome()}
@@ -148,7 +139,7 @@ class LoginActivity : AuthManager() {
     private fun initGoogleLogin() {
         // Configure Google Sign In
         val signInIntent = googleSignInClient.signInIntent
-        startActivityForResult(signInIntent, RC_SIGN_IN)
+        startActivityForResult(signInIntent, code)
     }
 
     private fun initFacebookLogin() {
@@ -165,16 +156,17 @@ class LoginActivity : AuthManager() {
 
             }
             override fun onError(error: FacebookException) {
-                screenToast("facebook:onError:$error")
+                showHelper("facebook:onError:$error")
             }
         })
     }
+    fun showHelper(stringMsg:String){
+        toastLong(this,stringMsg)
+    }
 
-    // ...
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == RC_SIGN_IN) {
+        if (requestCode == code) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {
                 // Google Sign In was successful, authenticate with Firebase
@@ -183,8 +175,7 @@ class LoginActivity : AuthManager() {
                 firebaseAuthWithGoogle(account.idToken)
             } catch (e: ApiException) {
                 // Google Sign In failed, update UI appropriately
-                screenToast("Google sign in failed:$e")
-
+                toastLong(this,"Google sign in failed:$e")
             }
         } else {
             faceBookCallbackManager.onActivityResult(requestCode, resultCode, data)
@@ -204,10 +195,6 @@ class LoginActivity : AuthManager() {
                  vmLoginViewModel.googleLogin(firebaseAuth, it)
              }
          }
-    }
-
-    private fun screenToast(msg: String?) {
-        Toast.makeText(this, msg, Toast.LENGTH_LONG).show()
     }
 }
 

@@ -1,5 +1,6 @@
 package com.campingstudio.agencekotlin.ui.view
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -17,6 +18,7 @@ import com.campingstudio.agencekotlin.ui.view.adapter.DataAdapter
 import com.campingstudio.agencekotlin.ui.viewmodel.ShopViewModel
 import com.google.gson.Gson
 
+
 class ShoppActivity : AppCompatActivity() {
 private lateinit var binding: ActivityShoppBinding
     private lateinit var vmShopViewModel: ShopViewModel
@@ -26,6 +28,7 @@ private lateinit var binding: ActivityShoppBinding
         DataAdapter(vmShopViewModel)
     }
 
+    @SuppressLint("PackageManagerGetSignatures")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityShoppBinding.inflate(layoutInflater)
@@ -36,13 +39,33 @@ private lateinit var binding: ActivityShoppBinding
         authUserHelper = AuthUserHelper(this@ShoppActivity)
         vmShopViewModel = ShopViewModel()
         vmShopViewModel.onCreate()
-        initView()
+        onLoad()
         setupLiveData()
+/*
+        try {
+            val info = packageManager.getPackageInfo(
+                "com.campingstudio.agencekotlin",  //Insert your own package name.
+                PackageManager.GET_SIGNATURES
+            )
+            for (signature in info.signatures) {
+                val md: MessageDigest = MessageDigest.getInstance("SHA")
+                md.update(signature.toByteArray())
+                Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT))
+            }
+        } catch (e: PackageManager.NameNotFoundException) {
+        } catch (e: NoSuchAlgorithmException) {
+        }*/
     }
 
     //To minimize the application and not return to the login activity
     override fun onBackPressed() {moveTaskToBack(true)}
-    private fun initView() {binding.apply {}}
+    private fun onLoad() {
+        binding.apply {
+            if(authUserHelper.user==null) {
+                logout()
+            }
+        }
+    }
     private fun setupLiveData() {
         vmShopViewModel.isLoading.observe(this, {
             binding.pbLoading.isVisible = it
@@ -90,10 +113,17 @@ private lateinit var binding: ActivityShoppBinding
         menuInflater.inflate(R.menu.menu_scrolling, menu)
         return true
     }
-    override fun onPrepareOptionsMenu(menu: Menu): Boolean {return true}
+    override fun onPrepareOptionsMenu(menu: Menu): Boolean {
+        authUserHelper.user.let {
+            if (it != null) {
+                menu.getItem(0).title = "Perfil "+it.userName.toString()
+            }
+        }
+        return true}
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.action_profile -> {return true}
+            R.id.action_profile -> {
+                return true}
             R.id.action_my_products ->{return true}
             R.id.action_settings ->{return true}
             R.id.action_logout -> {

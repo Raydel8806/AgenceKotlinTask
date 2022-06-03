@@ -10,8 +10,8 @@ class AuthUserHelper(context: Context) {
     private val sharedPreferencesEditor: SharedPreferences.Editor
     private val entryName = "com.campingstudio.agencekotlin"
     private val fieldNameAuthUser = "AuthUser"
-
     private var fieldNameIsLogin = "login"
+
     fun saveLogin(value: Boolean?) {
         if (value != null) {
             sharedPreferencesEditor.putBoolean(fieldNameIsLogin, value)

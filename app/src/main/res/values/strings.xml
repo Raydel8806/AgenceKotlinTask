@@ -40,9 +40,6 @@
 
     <string name="product_description">Product Name</string>
     <string name="forgot_password">Olvidó su contraseña?</string>
-    <string name="facebook_client_token">274109678203497</string>
-    <string name="facebook_app_id">274109678203497</string>
-    <string name="fb_login_protocol_scheme">fb274109678203497</string>
     <string name="login">Login</string>
     <string name="new_user">New User?</string>
     <string name="join_now">Join Now!</string>
@@ -54,4 +51,7 @@
     <string name="title_activity_map_visor">MapVisor</string>
     <string name="one_fragment">One Fragment</string>
 
+    <string name="facebook_client_token">3703ef3531556088170b137b60dee904</string>
+    <string name="facebook_app_id">274109678203497</string>
+    <string name="fb_login_protocol_scheme">fb274109678203497</string>
 </resources>

@@ -19,23 +19,8 @@ class DataAdapterViewHolder(itemView: View): RecyclerView
           val cvProduct = itemView.findViewById<CardView>(R.id.cv_product)
           val ivPhoto = itemView.findViewById<ImageView>(R.id.iv_product_picture)
           val tvProductName = itemView.findViewById<TextView>(R.id.tv_product_name)
-          Log.d(TAG, "Glide load: " + itemProduct.urlImageOfProduct)
+          Log.d(TAG, "load: " + itemProduct.urlImageOfProduct)
           tvProductName.text = itemProduct.nameOfProduct
-        /*Glide.with(itemView)
-            .load(itemProduct.backgroundsR)
-            .apply(RequestOptions().diskCacheStrategy(DiskCacheStrategy.AUTOMATIC))
-            .into(object : CustomTarget<Drawable?>() {
-                override fun onResourceReady(
-                    resource: Drawable,
-                    transition: Transition<in Drawable?>?
-                ) {
-                    ivPhoto.setImageDrawable(resource)
-                }
-                override fun onLoadCleared(placeholder: Drawable?) {
-                    print("on load cleared")
-                }
-            })*/
-
         cvProduct.setOnClickListener {
         }
         ivPhoto.setOnClickListener {

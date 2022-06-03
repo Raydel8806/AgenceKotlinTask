@@ -20,4 +20,6 @@
     <color name="red">#F44336</color>
     <color name="google_clr">#EF1C0D</color>
     <color name="fb_color">#344DD6</color>
+    <color name="com_facebook_button_background_color_focused_disabled">#344DD6</color>
+    com_facebook_button_background_color_focused_disabled
 </resources>
