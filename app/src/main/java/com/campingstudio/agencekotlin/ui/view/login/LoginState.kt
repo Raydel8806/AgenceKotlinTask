@@ -1,4 +1,4 @@
-package com.campingstudio.agencekotlin.ui.state
+package com.campingstudio.agencekotlin.ui.view.login
 
 data class LoginState (
     val userError : Int? = null,

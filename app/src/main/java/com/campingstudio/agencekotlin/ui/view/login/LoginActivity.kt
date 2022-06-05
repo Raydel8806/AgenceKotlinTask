@@ -1,4 +1,4 @@
-package com.campingstudio.agencekotlin.ui.view
+package com.campingstudio.agencekotlin.ui.view.login
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,8 +11,8 @@ import com.campingstudio.agencekotlin.databinding.ActivityLoginBinding
 import com.campingstudio.agencekotlin.core.AuthManager
 import com.campingstudio.agencekotlin.ext.hideKeyboard
 import com.campingstudio.agencekotlin.ext.toastLong
-import com.campingstudio.agencekotlin.ui.state.LoginState
-import com.campingstudio.agencekotlin.ui.viewmodel.LoginViewModel
+import com.campingstudio.agencekotlin.AgenceActivity
+import com.campingstudio.agencekotlin.ext.toastShort
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
@@ -67,14 +67,14 @@ class LoginActivity : AuthManager() {
         })
         vmLoginViewModel.authFailedResponse.observe(this, {
             if (it != null) {
-                toastLong(this,it)
+                toastLong(it)
             }
         })
         vmLoginViewModel.loginResponse.observe(this, {
             if (it != null) {
                 authUserHelper.saveUser(it)
                 authUserHelper.saveLogin(true)
-                val intent = Intent(this@LoginActivity, ShoppActivity::class.java)
+                val intent = Intent(this@LoginActivity, AgenceActivity::class.java)
                 startActivity(intent)
                 finishAffinity()
             }
@@ -93,16 +93,16 @@ class LoginActivity : AuthManager() {
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
-                toastLong(this,"Welcome "+it.displayName.toString())
+                toastLong("Welcome " + it.displayName.toString())
                 goHome()
             }
         })
 
         vmLoginViewModel.errorInsertResponse.observe(this, {
             if (it != null) {
-                toastLong(this,it.message + "")
+                toastLong(it.message + "")
                 if (!it.error) {
-                    val intent = Intent(this, ShoppActivity::class.java)
+                    val intent = Intent(this, AgenceActivity::class.java)
                     startActivity(intent)
                     finishAffinity()
                 }
@@ -116,7 +116,7 @@ class LoginActivity : AuthManager() {
             binding.etPassword.text.toString(),
         )
     }
-    private fun refreshState(loginState: LoginState ) {
+    private fun refreshState(loginState: LoginState) {
         if (loginState.userError != null) binding.etUserName.error = getString(loginState.userError)
         if (loginState.passwordError != null) binding.etPassword.error = getString(loginState.passwordError)
         binding.btLogin.setBackgroundResource(if(loginState.isDataValid) R.drawable.enable_bg else R.drawable.disable_bg)
@@ -126,14 +126,14 @@ class LoginActivity : AuthManager() {
             llRoot.setOnClickListener{hideKeyboard()}
             etUserName.doAfterTextChanged {startValidating()}
             etPassword.doAfterTextChanged {startValidating()}
-            tvForgotPassword.setOnClickListener {showHelper("Loading...")}
+            tvForgotPassword.setOnClickListener {toastShort("Loading...")}
             ivFacebook.setOnClickListener {initFacebookLogin()}
             ivGoogle.setOnClickListener {initGoogleLogin()}
             btLogin.setOnClickListener {goHome()}
         }
     }
     private fun goHome() {
-        val intent = Intent(this, ShoppActivity::class.java)
+        val intent = Intent(this, AgenceActivity::class.java)
         startActivity(intent)
     }
     private fun initGoogleLogin() {
@@ -156,26 +156,24 @@ class LoginActivity : AuthManager() {
 
             }
             override fun onError(error: FacebookException) {
-                showHelper("facebook:onError:$error")
+                toastShort("Error al intentar autenticar con Usuario de Facebook. Intente mas " +
+                        "tarde...")
             }
         })
     }
-    fun showHelper(stringMsg:String){
-        toastLong(this,stringMsg)
-    }
+
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == code) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {
-                // Google Sign In was successful, authenticate with Firebase
                 val account = task.getResult(ApiException::class.java)
                 Log.d(TAG, "firebaseAuthWithGoogle:" + account.id)
                 firebaseAuthWithGoogle(account.idToken)
             } catch (e: ApiException) {
-                // Google Sign In failed, update UI appropriately
-                toastLong(this,"Google sign in failed:$e")
+                toastShort("Error al intentar autenticar con Usuario de Google. Intente mas " +
+                        "tarde...")
             }
         } else {
             faceBookCallbackManager.onActivityResult(requestCode, resultCode, data)

@@ -1,10 +1,9 @@
-package com.campingstudio.agencekotlin.ui.view
+package com.campingstudio.agencekotlin.ui.view.product_detail
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.campingstudio.agencekotlin.data.model.Product
 import com.campingstudio.agencekotlin.databinding.ActivityProductDetailBinding
-import com.campingstudio.agencekotlin.ui.viewmodel.ProductDetailViewModel
 import com.google.gson.Gson
 import com.campingstudio.agencekotlin.R
 
@@ -58,7 +57,7 @@ class ProductDetailActivity : AppCompatActivity()  {
     private fun addFragment( ) {
         val manager = supportFragmentManager
         val ft = manager.beginTransaction()
-        ft.replace(R.id.fl_layout_map, com.campingstudio.agencekotlin.ui.view.MapFragment())
+        ft.replace(R.id.fl_layout_map, MapFragment())
         ft.commitAllowingStateLoss()
     }
 

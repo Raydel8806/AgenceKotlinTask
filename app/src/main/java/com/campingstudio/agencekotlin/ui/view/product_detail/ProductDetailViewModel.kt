@@ -1,4 +1,4 @@
-package com.campingstudio.agencekotlin.ui.viewmodel
+package com.campingstudio.agencekotlin.ui.view.product_detail
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
@@ -14,6 +14,7 @@ class ProductDetailViewModel:ViewModel() {
     var tProductSelected : MutableLiveData<Product> = _tProductSelected
 
     fun selectProduct(product: Product){
+        Log.d(TAG, "selectProduct: ${product.nameOfProduct}")
         tProductSelected.value = product
     }
 

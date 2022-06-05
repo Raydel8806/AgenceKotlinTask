@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_home_menu"
+        android:icon="@drawable/ic_shop"
+        android:title="@string/action_services" >
+        <menu>
+            <item android:id="@+id/draw_menu_item_home"
+                android:icon="@drawable/ic_shop"
+                android:title="@string/nav_home" />
+        </menu>
+    </item>
+    <item android:id="@+id/nav_divider1" android:icon="@drawable/ic_shop"
+        android:title="@string/nav_home">
+        <menu>
+
+        </menu>
+    </item>
+    <group>
+        <item android:id="@+id/draw_menu_item_profile"
+            android:icon="@drawable/ic_profile"
+            android:title="@string/action_profile"/>
+        <item android:id="@+id/draw_menu_my_products"
+            android:icon="@drawable/ic_my_products"
+            android:title="@string/action_my_products"/>
+        <item android:id="@+id/draw_menu_item_settings"
+            android:icon="@drawable/ic_settings"
+            android:title="@string/action_settings"/>
+        <item android:id="@+id/draw_menu_item_out"
+            android:icon="@drawable/ic_out"
+            android:title="@string/action_logout"/>
+        <item android:id="@+id/draw_menu_item_exit"
+            android:icon="@drawable/ic_out"
+            android:title="@string/action_exit"/>
+    </group>
+<!--
+    <item android:title="@string/action_profile">
+        <menu>
+            <item android:id="@+id/navItem4"
+                android:title="@string/action_my_products"/>
+            <item android:id="@+id/navItem5"
+                android:title="@string/action_settings"/>
+        </menu>
+    </item>-->
+</menu>

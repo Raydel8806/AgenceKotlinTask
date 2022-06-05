@@ -1,5 +1,4 @@
 package com.campingstudio.agencekotlin.domain
-
 import com.campingstudio.agencekotlin.data.ProductRepository
 
 class GetProductsUseCase {

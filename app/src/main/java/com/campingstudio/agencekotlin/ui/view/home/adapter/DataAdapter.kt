@@ -1,16 +1,16 @@
-package com.campingstudio.agencekotlin.ui.view.adapter
+package com.campingstudio.agencekotlin.ui.view.home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.campingstudio.agencekotlin.R
-import com.campingstudio.agencekotlin.ui.view.viewholder.DataAdapterViewHolder
-import com.campingstudio.agencekotlin.ui.viewmodel.ShopViewModel
+import com.campingstudio.agencekotlin.ui.view.home.viewholder.DataAdapterViewHolder
+import com.campingstudio.agencekotlin.ui.view.home.HomeViewModel
 
-class DataAdapter (var shopViewModel: ShopViewModel) : RecyclerView
+class DataAdapter (var homeViewModel: HomeViewModel) : RecyclerView
 .Adapter<DataAdapterViewHolder>() {
 
-    private var adapterData = shopViewModel.tProductListLive.value.orEmpty()
+    private var adapterData = homeViewModel.tProductListLive.value.orEmpty()
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -29,7 +29,7 @@ class DataAdapter (var shopViewModel: ShopViewModel) : RecyclerView
         holder: DataAdapterViewHolder,
         position: Int
     ) {
-        holder.bind(adapterData[position] ,shopViewModel)
+        holder.bind(adapterData[position] ,homeViewModel)
     }
 
     override fun getItemCount(): Int = adapterData.size

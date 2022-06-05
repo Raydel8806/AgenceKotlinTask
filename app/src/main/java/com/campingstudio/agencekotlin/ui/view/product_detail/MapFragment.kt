@@ -1,12 +1,10 @@
-package com.campingstudio.agencekotlin.ui.view
+package com.campingstudio.agencekotlin.ui.view.product_detail
 
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
-import android.provider.ContactsContract
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,14 +12,15 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.campingstudio.agencekotlin.R
+import com.campingstudio.agencekotlin.ext.isNull
 import com.campingstudio.agencekotlin.ext.toastLong
+import com.campingstudio.agencekotlin.ext.toastShort
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import com.campingstudio.agencekotlin.ext.toastShort
 import com.google.android.gms.maps.OnMapReadyCallback
 
 class MapFragment : Fragment() ,
@@ -110,9 +109,8 @@ class MapFragment : Fragment() ,
             this.activity?.let {
                 if (ActivityCompat.shouldShowRequestPermissionRationale(it,
                         Manifest.permission.ACCESS_FINE_LOCATION)) {
-                    this.context?.let { it1 ->
-                        toastLong(
-                            it1, "Ve a ajustes y acepta los permisos"
+                    this.context?.let {
+                        toastLong("Ve a ajustes y acepta los permisos"
                         )
                     }
                 } else {
@@ -132,22 +130,15 @@ class MapFragment : Fragment() ,
                     mMap.isMyLocationEnabled = true
                 }else{
                     if (it != null) {
-                        toastShort(it, "Para activar la localización ve a ajustes y acepta los " +
-                                "permisos" )
+                        toastShort(
+                             "Para activar la localización ve a ajustes y acepta los " +
+                                    "permisos"
+                        )
                     }
                 }
                 else -> {}
             }
         }
-    }
-
-    fun addMarker(position:LatLng,title:String,snippets: String) {
-        mMap.addMarker(
-            MarkerOptions()
-                .position(position)
-                .title(title)
-                .snippet(snippets)
-        )
     }
     private fun addAgenceBrMarker() {
         mMap.clear() //clear old markers
@@ -160,11 +151,11 @@ class MapFragment : Fragment() ,
     }
 
     override fun onMyLocationClick(p0: Location) {
-        this.context?.let { toastShort(it,  "Estás en ${p0.latitude}, ${p0.longitude}",) }
+        this.context?.let { toastShort(  "Estás en ${p0.latitude}, ${p0.longitude}",) }
 }
 
     override fun onMyLocationButtonClick(): Boolean {
-        this.context?.let { toastShort(it,  "Cargando...") }
+        this.context?.let { toastShort(  "Cargando...") }
         addAgenceBrMarker()
         navigateToAgenceMarker()
         return false
@@ -174,11 +165,10 @@ class MapFragment : Fragment() ,
     override fun onMyLocationChange(p0: Location?) {
         if (navigating){
             p0.let {
-                if (it != null) {
-                    navigateToPosition(it.latitude, it.longitude)
+                if (it.isNull()) {
+                    navigateToPosition(it!!.latitude, it.longitude)
                 }
             }
         }
-
     }
 }// Required empty public constructor

@@ -1,6 +1,5 @@
-package com.campingstudio.agencekotlin.ui.viewmodel
+package com.campingstudio.agencekotlin.ui.view.home
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,7 +7,7 @@ import com.campingstudio.agencekotlin.data.model.Product
 import com.campingstudio.agencekotlin.domain.GetProductsUseCase
 import kotlinx.coroutines.launch
 
-class ShopViewModel:ViewModel() {
+class HomeViewModel:ViewModel() {
     companion object {
         const val TAG = "TProductViewModel"
     }
@@ -35,9 +34,9 @@ class ShopViewModel:ViewModel() {
     fun selectProduct(product: Product){
         tProductSelected.value = product
     }
-
+/*
     fun addProduct(product: Product) {
         tProductListLive.value?.add(product)
         _tProductListLive.postValue(tProductListLive.value)
-    }
+    }*/
 }

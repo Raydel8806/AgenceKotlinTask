@@ -7,11 +7,16 @@
         "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
         "technologically advanced and open to imagination and magic.\n"
     </string>
+    <string name="nav_home">Home</string>
     <string name="action_profile">Perfil</string>
+
+    <string name="action_services">Servicios</string>
     <string name="action_my_products">Mis Productos</string>
 
     <string name="action_settings">Configuraciones</string>
     <string name="action_logout">Cerrar sesión</string>
+
+    <string name="action_exit">Cerrar App</string>
 
     <string name="title_activity_login">Iniciar sesión</string>
 
@@ -54,4 +59,13 @@
     <string name="facebook_client_token">3703ef3531556088170b137b60dee904</string>
     <string name="facebook_app_id">274109678203497</string>
     <string name="fb_login_protocol_scheme">fb274109678203497</string>
+    <string name="title_activity_agence">AgenceActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
 </resources>

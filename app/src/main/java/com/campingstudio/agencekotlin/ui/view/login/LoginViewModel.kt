@@ -1,4 +1,4 @@
-package com.campingstudio.agencekotlin.ui.viewmodel
+package com.campingstudio.agencekotlin.ui.view.login
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel
 import com.campingstudio.agencekotlin.R
 import com.campingstudio.agencekotlin.data.model.AuthResponse
 import com.campingstudio.agencekotlin.data.model.AuthUser
-import com.campingstudio.agencekotlin.ui.state.LoginState
 import com.facebook.AccessToken
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
