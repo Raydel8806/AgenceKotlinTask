@@ -1,5 +1,6 @@
 package com.campingstudio.agencekotlin.ui.view.home
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,7 +10,7 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel:ViewModel() {
     companion object {
-        const val TAG = "TProductViewModel"
+        const val TAG = "HomeViewModel"
     }
 
     private val productRepository = GetProductsUseCase()
@@ -26,6 +27,7 @@ class HomeViewModel:ViewModel() {
             if(!itResult.isNullOrEmpty()){
                 tProductListLive.value = (itResult as MutableList<Product>)
                 _tProductListLive.postValue(tProductListLive.value)
+                Log.d(TAG,  "Loaded ${_tProductListLive.value?.size.toString()} prods.")
             }
             isLoading.postValue(false)
         }

@@ -7,7 +7,6 @@ import com.campingstudio.agencekotlin.databinding.ActivityProductDetailBinding
 import com.google.gson.Gson
 import com.campingstudio.agencekotlin.R
 
-
 class ProductDetailActivity : AppCompatActivity()  {
 
     private lateinit var binding: ActivityProductDetailBinding
@@ -35,8 +34,8 @@ class ProductDetailActivity : AppCompatActivity()  {
 
     private fun showConfirmDialog() {
         val alertDialog: AlertDialog.Builder = AlertDialog.Builder(this@ProductDetailActivity)
-        alertDialog.setTitle("Confirmar Compra")
-        alertDialog.setMessage("Está seguro que desea pagar por este Producto?")
+        alertDialog.setTitle("Confirmar compra")
+        alertDialog.setMessage("Está seguro que desea pagar por este producto?")
         alertDialog.setPositiveButton("Si") { _, _ ->showNotifyDialog()}
         alertDialog.setNegativeButton("No") { _, _ -> }
         val alert: AlertDialog = alertDialog.create()
@@ -47,7 +46,7 @@ class ProductDetailActivity : AppCompatActivity()  {
     private fun showNotifyDialog() {
         val alertDialog: AlertDialog.Builder = AlertDialog.Builder(this@ProductDetailActivity)
         alertDialog.setTitle("Resultado del pago:")
-        alertDialog.setMessage("Pedigo pagado correctamente!!!")
+        alertDialog.setMessage("La compra se realizó correctamente !!!")
         alertDialog.setPositiveButton("OK") { _, _ ->onBackPressed()}
         val alert: AlertDialog = alertDialog.create()
         alert.setCanceledOnTouchOutside(false)
@@ -65,6 +64,7 @@ class ProductDetailActivity : AppCompatActivity()  {
         vmProductDetailViewModel.tProductSelected.observe(this, {
             binding.tvProductName.text = it.nameOfProduct
             binding.tvProductDescription.text = it.descriptionOfProduct
+            binding.ivProductPicture.setBackgroundResource(it.urlImageOfProduct)
         })
     }
 

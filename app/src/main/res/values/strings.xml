@@ -9,17 +9,12 @@
     </string>
     <string name="nav_home">Home</string>
     <string name="action_profile">Perfil</string>
-
     <string name="action_services">Servicios</string>
-    <string name="action_my_products">Mis Productos</string>
-
+    <string name="action_my_products">Mis productos</string>
     <string name="action_settings">Configuraciones</string>
     <string name="action_logout">Cerrar sesión</string>
-
     <string name="action_exit">Cerrar App</string>
-
     <string name="title_activity_login">Iniciar sesión</string>
-
     <string name="title_activity_shop_activity">Tienda</string>
     <string name="title_activity_product_detail">Detalles de producto</string>
 
@@ -42,9 +37,8 @@
     <string name="log_in">Iniciar sesión</string>
     <string name="sign_up">Sign Up!</string>
     <string name="product_name">MOBILE</string>
-
     <string name="product_description">Product Name</string>
-    <string name="forgot_password">Olvidó su contraseña?</string>
+    <string name="forgot_password">Olvidé mi contraseña</string>
     <string name="login">Login</string>
     <string name="new_user">New User?</string>
     <string name="join_now">Join Now!</string>
@@ -55,15 +49,14 @@
     <string name="buy">Comprar</string>
     <string name="title_activity_map_visor">MapVisor</string>
     <string name="one_fragment">One Fragment</string>
-
     <string name="facebook_client_token">3703ef3531556088170b137b60dee904</string>
     <string name="facebook_app_id">274109678203497</string>
     <string name="fb_login_protocol_scheme">fb274109678203497</string>
     <string name="title_activity_agence">AgenceActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">We build technology </string>
+    <string name="nav_header_subtitle">We are driven by innovation.</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>

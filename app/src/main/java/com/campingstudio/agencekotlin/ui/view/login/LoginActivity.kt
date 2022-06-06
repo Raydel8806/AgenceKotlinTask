@@ -42,19 +42,16 @@ class LoginActivity : AuthManager() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //initView
         vmLoginViewModel = LoginViewModel()
         authUserHelper = AuthUserHelper(this)
         faceBookCallbackManager = CallbackManager.Factory.create()
 
-        // Configure Google Sign In
         googleSignInClient = GoogleSignIn.getClient(this, GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build())
         initProps()
         setupLiveData()
-        //only one time
         refreshState(LoginState(isDataValid = true))
     }
 
@@ -86,9 +83,7 @@ class LoginActivity : AuthManager() {
                 authUserHelper.saveUser(user)
                 authUserHelper.saveLogin(true)
                 try {
-                    //Facebook LogOut
                     LoginManager.getInstance().logOut()
-                    //Google SignOut
                     googleSignInClient.signOut()
                 } catch (e: Exception) {
                     e.printStackTrace()

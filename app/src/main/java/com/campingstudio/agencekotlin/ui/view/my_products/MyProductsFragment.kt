@@ -28,7 +28,7 @@ class MyProductsFragment : Fragment() {
 
         _binding = FragmentMyProductsBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
+        activity!!.title="Mis Productos"
         val textView: TextView = binding.textSlideshow
         myProductsViewModel.text.observe(viewLifecycleOwner, {
             textView.text = it

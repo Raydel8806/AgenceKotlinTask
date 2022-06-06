@@ -51,16 +51,6 @@ class MapFragment : Fragment() ,
         return rootView
     }
 
-    private fun navigateToAgenceMarker() {
-        val latLongForCamera = CameraPosition.builder()
-            .target(LatLng(-23.66255469273391, -46.70944611534271))
-            .zoom(10f)
-            .bearing(0f)
-            .tilt(45f)
-            .build()
-
-        mMap.animateCamera(CameraUpdateFactory.newCameraPosition(latLongForCamera), 10000, null)
-    }
     private fun navigateToPosition(lat:Double, lon:Double) {
         val latLongForCamera = CameraPosition.builder()
             .target(LatLng(lat, lon))
@@ -151,22 +141,22 @@ class MapFragment : Fragment() ,
     }
 
     override fun onMyLocationClick(p0: Location) {
-        this.context?.let { toastShort(  "Estás en ${p0.latitude}, ${p0.longitude}",) }
+        this.context?.let { toastShort(  "Estás en ${p0.latitude}, ${p0.longitude}") }
 }
 
     override fun onMyLocationButtonClick(): Boolean {
         this.context?.let { toastShort(  "Cargando...") }
         addAgenceBrMarker()
-        navigateToAgenceMarker()
-        return false
+        return true
     }
 
     //Deprecated
     override fun onMyLocationChange(p0: Location?) {
-        if (navigating){
+        if (!navigating){
             p0.let {
                 if (it.isNull()) {
                     navigateToPosition(it!!.latitude, it.longitude)
+                    navigating = true
                 }
             }
         }

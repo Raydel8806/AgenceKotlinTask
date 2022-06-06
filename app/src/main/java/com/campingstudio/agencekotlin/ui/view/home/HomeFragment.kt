@@ -60,6 +60,7 @@ class HomeFragment : Fragment() {
         intent.putExtra("product", Gson().toJson(product))
         startActivity(intent)
     }
+
     private fun refreshShoppRecycler() {
         binding.contentView.rvGridProds.apply {
             layoutManager = GridLayoutManager(

@@ -42,9 +42,9 @@ fun Fragment.toastShort( message: String?) {
     toast.setGravity(Gravity.CENTER,0,0)
     toast.show()
 }
-
+/*
 fun ImageView.load(url: String) {
     if (url.isNotEmpty()) {
         Glide.with(this.context).load(url).into(this)
     }
-}
+}*/

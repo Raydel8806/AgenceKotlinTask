@@ -7,7 +7,7 @@ import com.campingstudio.agencekotlin.R
 import com.campingstudio.agencekotlin.ui.view.home.viewholder.DataAdapterViewHolder
 import com.campingstudio.agencekotlin.ui.view.home.HomeViewModel
 
-class DataAdapter (var homeViewModel: HomeViewModel) : RecyclerView
+class DataAdapter (private var homeViewModel: HomeViewModel) : RecyclerView
 .Adapter<DataAdapterViewHolder>() {
 
     private var adapterData = homeViewModel.tProductListLive.value.orEmpty()

@@ -28,7 +28,7 @@ class SettingsFragment : Fragment() {
 
         _binding = FragmentSlideshowBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
+        activity!!.title="Configuraciones"
         val textView: TextView = binding.textSlideshow
         settingsViewModel.text.observe(viewLifecycleOwner, {
             textView.text = it

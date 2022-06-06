@@ -16,7 +16,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.agencekotlin">
+        android:theme="@style/Theme.agencekotlin"
+        android:fullBackupOnly="true">
         <activity
             android:name=".AgenceActivity"
             android:exported="true"
@@ -48,13 +49,6 @@
             android:name="com.facebook.sdk.ClientToken"
             android:value="@string/facebook_client_token"
             tools:replace="android:value" />
-
-        <activity
-            android:name=".ui.view.home.ShoppActivity"
-            android:exported="true"
-            android:label="@string/title_activity_shop_activity"
-            android:theme="@style/Theme.agencekotlin.NoActionBar">
-        </activity>
         <activity
             android:name=".ui.view.product_detail.ProductDetailActivity"
             android:exported="true"
@@ -69,7 +63,7 @@
         <provider
             android:name="com.facebook.FacebookContentProvider"
             android:authorities="com.facebook.app.FacebookContentProvider274109678203497"
-            android:exported="true" />
+            android:exported="false" />
     </application>
 
 </manifest>

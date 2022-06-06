@@ -50,7 +50,7 @@ class LoginViewModel : ViewModel() {
             }
     }
 
-    fun formDataChanged(userName: String,password: String,) {
+    fun formDataChanged(userName: String,password: String ) {
         if (!isUserNameValid(userName)){
               _loginState.value = LoginState(userError = R.string.invalid_username,isDataValid =false)
         } else

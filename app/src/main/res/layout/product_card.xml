@@ -17,8 +17,8 @@ app:cardElevation="5dp"
     tools:ignore="UseCompoundDrawables">
     <ImageView
         android:id="@+id/iv_product_picture"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:layout_gravity="center"
         android:contentDescription="@string/image"
         android:background="@drawable/ic_baseline_image_24"

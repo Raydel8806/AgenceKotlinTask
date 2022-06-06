@@ -21,6 +21,7 @@ class DataAdapterViewHolder(itemView: View): RecyclerView
           val tvProductName = itemView.findViewById<TextView>(R.id.tv_product_name)
           Log.d(TAG, "load: " + itemProduct.urlImageOfProduct)
           tvProductName.text = itemProduct.nameOfProduct
+          ivPhoto.setBackgroundResource(itemProduct.urlImageOfProduct)
         cvProduct.setOnClickListener {
         }
         ivPhoto.setOnClickListener {

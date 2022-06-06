@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.util.Log
 import android.view.MenuItem
-import android.widget.TextView
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -18,7 +17,6 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import com.campingstudio.agencekotlin.core.AuthUserHelper
-import com.campingstudio.agencekotlin.data.model.AuthUser
 import com.campingstudio.agencekotlin.databinding.ActivityAgenceBinding
 import com.campingstudio.agencekotlin.ext.toastLong
 import com.campingstudio.agencekotlin.ext.toastShort
@@ -44,10 +42,11 @@ class AgenceActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         binding = ActivityAgenceBinding.inflate(layoutInflater)
         setContentView(binding.root)
         authUserHelper =  AuthUserHelper(this@AgenceActivity)
-        if(authUserHelper.user==null) {
+        if(!authUserHelper.login) {
             toastShort("authUserHelper.user==null")
             logout()
         }
+        this.title="Agence"
 
 
         toolbar = binding.appBarAgence.toolbarAgenceMain
@@ -56,8 +55,7 @@ class AgenceActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
         drawerLayout = binding.drawerLayout
         actionBarDrawerToggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawerLayout.addDrawerListener(actionBarDrawerToggle)
-        toolbar.setNavigationIcon(R.drawable.ic_out)
-
+        toolbar.setNavigationIcon(R.drawable.ic_menu_izq)
         supportActionBar?.setHomeButtonEnabled(true)
         navView = binding.navView
         navView.setNavigationItemSelectedListener(this)
@@ -66,7 +64,7 @@ class AgenceActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelec
 
     private fun logout() {
         try {
-            Log.d(TAG, "\"Regresa pronto ${authUserHelper.user!!.userName}.\"")
+            Log.d(TAG,  "Regresa pronto ${authUserHelper.user!!.userName}. ")
             toastLong( "Regresa pronto ${authUserHelper.user!!.userName}.")
             authUserHelper.logout()
             val intent = Intent(this.applicationContext, LoginActivity::class.java)
